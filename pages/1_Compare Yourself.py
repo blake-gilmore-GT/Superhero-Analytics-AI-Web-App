@@ -3,23 +3,18 @@ import requests
 import pandas as pd
 import plotly.express as px
 
-
-api_token = "9cda059f72d4d3582cf3591379736599"
 api_token = st.secrets["SUPERHERO_API_TOKEN"]
 
 st.title("Super Stats Comparison :balance_scale:")
 
-
 hero_name = st.text_input("Enter a superhero name to compare:", "Batman")
-
 
 if hero_name:
     url = f"https://superheroapi.com/api/{api_token}/search/{hero_name}"
     response = requests.get(url)
     data = response.json()
 
-    if data["response"] == "success":
-        
+    if data.get("response") == "success":
         hero = data["results"][0]
         stats = {k: int(v) if v != "null" else 0 for k, v in hero["powerstats"].items()}
 
@@ -55,14 +50,15 @@ if hero_name:
                 hero["name"]: list(stats.values())
             })
 
-            fig = px.bar(df, x="Stat", y=["You", hero["name"]],
-                         barmode="group",
-                         title=f"Hero Stat Comparison with {hero['name']}",
-                         text_auto=True)
+            fig = px.bar(
+                df,
+                x="Stat",
+                y=["You", hero["name"]],
+                barmode="group",
+                title=f"Hero Stat Comparison with {hero['name']}",
+                text_auto=True
+            )
             st.plotly_chart(fig)
 
     else:
         st.error("Hero not found. Please try another hero name.")
-
-
-
