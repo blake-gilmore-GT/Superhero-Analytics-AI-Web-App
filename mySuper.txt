@@ -1,0 +1,24 @@
+```json
+{
+  "stats": {
+    "intelligence": 60,
+    "strength": 50,
+    "speed": 30,
+    "durability": 45,
+    "power": 10,
+    "combat": 65
+  },
+  "matches": [
+    "Odin",
+    "Galactus",
+    "Thanos",
+    "Ra's Al Ghul",
+    "Martian Manhunter",
+    "Professor X",
+    "Alfred Pennyworth",
+    "Vulture",
+    "Kingpin",
+    "Doctor Strange"
+  ]
+}
+```
